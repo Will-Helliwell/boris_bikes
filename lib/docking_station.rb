@@ -14,7 +14,7 @@ class DockingStation
 
   def dock_bike(bike)
     # Use fail or raise to raise an error
-    fail "Station Full" if @bikes.size > 20
+    fail "Station Full" if @bikes.length > 19
     @bikes << bike
   end
 end
