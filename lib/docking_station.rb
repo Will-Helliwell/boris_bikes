@@ -9,7 +9,7 @@ class DockingStation
 
   def release_bike
     fail "No bikes available" if @bikes == []
-    @bikes
+    @bikes.shift
   end
 
   def dock_bike(bike)
