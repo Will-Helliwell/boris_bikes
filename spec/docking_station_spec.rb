@@ -1,10 +1,19 @@
 require "../lib/docking_station"
-
-describe DockingStation do
+ describe DockingStation do
 
   it "is empty when new" do
     expect(subject.bikes).to eq([])
   end
+  it "has a default capacity of DEFAULT_CAPACITY" do
+    expect(subject.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+  end
+  it "can have its capacity set to a value" do
+    # station = DockingStation.new(25)
+    # 25.times{station.dock_bike(Bike.new)}
+    # expect{station.dock_bike(Bike.new)}.to raise_error("Station Full")
+    expect(DockingStation).to respond_to(:new).with(1).argument
+  end
+
 
   describe "#release_bike" do
     original_bike = Bike.new
@@ -29,12 +38,11 @@ describe DockingStation do
       expect(subject.bikes).to eq([a_bike])
     end
     # Write RSpec tests that expect errors
-    it "returns an error when called on a docking station with >20 bikes" do
+    it "returns an error when called on a new docking station already containing DEFAULT_CAPACITY bikes" do
       full_docking = DockingStation.new
-      20.times{full_docking.dock_bike(Bike.new)}
+      DockingStation::DEFAULT_CAPACITY.times{full_docking.dock_bike(Bike.new)}
       expect{full_docking.dock_bike(Bike.new)}.to raise_error("Station Full")
     end
   end
-
 
 end
